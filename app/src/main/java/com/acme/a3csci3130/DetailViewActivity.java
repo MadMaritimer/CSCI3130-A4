@@ -13,6 +13,7 @@ import java.util.Map;
  * @author Ben Parker
  * Logic that powers the Detail View Activity
  * Displays all of the customizable fields for a selected <code> Contact </code> entry
+ * and populates them with existing values, if present
  */
 public class DetailViewActivity extends Activity {
 
@@ -102,6 +103,7 @@ public class DetailViewActivity extends Activity {
     /**
      * Updates the <code>name, address, prov, type</code> fields for the selected <code>Contact</code>
      * entry and publishes the updated entry to Firebase.
+     * No inherent validation at present, validation done by firebase rules as requested
      * @param v
      */
     public void updateContact(View v){
