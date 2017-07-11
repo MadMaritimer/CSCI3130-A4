@@ -9,7 +9,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * @author Ben Parker
@@ -30,11 +33,12 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         //Get the app wide shared variables
-        MyApplicationData appData = (MyApplicationData)getApplication();
+        final MyApplicationData appData = (MyApplicationData)getApplication();
 
         //Set-up Firebase
         appData.firebaseDBInstance = FirebaseDatabase.getInstance();
         appData.firebaseReference = appData.firebaseDBInstance.getReference("contacts");
+        appData.firebaseCounter = appData.firebaseDBInstance.getReference("counter");
 
         //Get the reference to the UI contents
         contactListView = (ListView) findViewById(R.id.listView);
@@ -49,6 +53,19 @@ public class MainActivity extends Activity {
             }
         };
         contactListView.setAdapter(firebaseAdapter);
+        appData.firebaseCounter.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.exists()){
+                    appData.firebaseCounter.setValue(firebaseAdapter.getCount());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         contactListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             // onItemClick method is called everytime a user clicks an item on the list
             @Override
@@ -61,14 +78,12 @@ public class MainActivity extends Activity {
 
     /**
      * Opens the CreateContactActivity
-     * passes the current list size into the intent so unique bID can be made
      * @param v the current view
      */
     public void createContactButton(View v)
     {
+        MyApplicationData appData = (MyApplicationData)getApplication();
         Intent intent=new Intent(this, CreateContactAcitivity.class);
-        int entryCount = firebaseAdapter.getCount();
-        intent.putExtra("index", entryCount);
         startActivity(intent);
     }
 
