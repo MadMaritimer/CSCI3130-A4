@@ -3,14 +3,20 @@
     ".read": "true",
     ".write": "true",
     "contacts": {
-            "$contact": {
-                "name": {
-                    ".validate": "newData.isString() && newData.val().length < 50"
-                },
-                "email": {
-                    ".validate": "newData.isString() && newData.val().matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i)"
-                }
-            }
+      "$contact": {
+        "bID": {
+          ".validate": "newData.val().length == 9 && newData.val().matches(/^[0-9]+$/)"
+        },
+        "name": {
+          ".validate": "newData.isString() && newData.val().length > 1 && newData.val().length < 49"
+        },
+        "address": {
+          ".validate": "newData.isString() && newData.val().length <50"
+        },
+        "type":{
+          ".validate": "newData.isString() && !(newData.val().matches(/^Select a Business Type$/))"
         }
+      }
+    }
   }
 }

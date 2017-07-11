@@ -55,6 +55,8 @@ public class MainActivity extends Activity {
     public void createContactButton(View v)
     {
         Intent intent=new Intent(this, CreateContactAcitivity.class);
+        int entryCount = firebaseAdapter.getCount();
+        intent.putExtra("index", entryCount);
         startActivity(intent);
     }
 
