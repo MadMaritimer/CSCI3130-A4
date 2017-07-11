@@ -54,6 +54,10 @@ public class Contact implements Serializable {
         this.type = type;
     }
 
+    @Override
+    public String toString() {
+        return bID+name+type+address+prov;
+    }
 
     @Exclude
     public Map<String, Object> toMap(){
