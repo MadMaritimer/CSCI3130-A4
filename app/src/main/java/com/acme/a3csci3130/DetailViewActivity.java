@@ -9,6 +9,11 @@ import android.widget.Switch;
 
 import java.util.Map;
 
+/**
+ * @author Ben Parker
+ * Logic that powers the Detail View Activity
+ * Displays all of the customizable fields for a selected <code> Contact </code> entry
+ */
 public class DetailViewActivity extends Activity {
 
     private EditText nameField, addressField;
@@ -94,6 +99,11 @@ public class DetailViewActivity extends Activity {
         }
     }
 
+    /**
+     * Updates the <code>name, address, prov, type</code> fields for the selected <code>Contact</code>
+     * entry and publishes the updated entry to Firebase.
+     * @param v
+     */
     public void updateContact(View v){
         appState = ((MyApplicationData) getApplicationContext());
         receivedPersonInfo.name = nameField.getText().toString();
@@ -107,6 +117,10 @@ public class DetailViewActivity extends Activity {
 
     }
 
+    /**
+     * Deletes the selected <code>Contact</code> entry from the Firebase
+     * @param v
+     */
     public void eraseContact(View v)
     {
         appState = ((MyApplicationData) getApplicationContext());

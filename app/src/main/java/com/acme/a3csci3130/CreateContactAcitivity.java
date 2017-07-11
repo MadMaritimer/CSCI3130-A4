@@ -15,6 +15,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Random;
 
+/**
+ * @author Ben Parker
+ * Creates a new <code>Contact</code> instance and pushes it to Firebase when Submit button pressed
+ */
 public class CreateContactAcitivity extends Activity {
 
     private Button submitButton;
@@ -52,6 +56,12 @@ public class CreateContactAcitivity extends Activity {
         });
     }
 
+    /**
+     * Controls the submitInfoButton
+     * creates a new <code>Contact</code> with the information of the new business
+     * then pushes it to Firebase
+     * @param v the current view
+     */
     public void submitInfoButton(View v) {
         //each entry needs a unique ID
         Bundle bundle = getIntent().getExtras();

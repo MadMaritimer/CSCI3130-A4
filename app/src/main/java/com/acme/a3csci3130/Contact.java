@@ -8,8 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * @author Ben Parker
  * Class that defines how the data will be stored in the
- * Firebase databse. This is converted to a JSON format
+ * Firebase database. This is converted to a JSON format
+ * <code>bID</code> unique 9 digit number that identifies the business, required
+ * <code>name</code> the name of the business, 2-48 chars, inclusive, required
+ * <code>type</code> the primary role performed by the business, required
+ * <code>address</code> the physical address of the business, max 50 chars, optional
+ * <code>prov</code> the abbreviation of the province of the business, optional
  */
 
 public class Contact implements Serializable {

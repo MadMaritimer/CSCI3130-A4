@@ -7,6 +7,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by Franz on 2017-05-31.
+ * Contains the firebase references for easy access throughout the app
  */
 
 public class MyApplicationData extends Application {
